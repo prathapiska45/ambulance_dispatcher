@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tiruchirapalli Ambulance Dispatcher</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="https://img.icons8.com/color/48/000000/ambulance.png" alt="ambulance" />
+      <h1>Tiruchirapalli Smart Ambulance Dispatch</h1>
+    </div>
+    <p class="tagline">Priority dispatch • Graph routing • Fast autocomplete</p>
+  </header>
 
+  <main class="container">
+    <section class="controls-card">
+      <h2>Request Ambulance</h2>
+
+      <label for="patientName">Patient Name</label>
+      <input id="patientName" placeholder="e.g., Ramesh" />
+
+      <label for="patientLocation">Location (start typing)</label>
+      <div class="suggest-wrap">
+        <input id="patientLocation" placeholder="e.g., Srirangam" oninput="showSuggestions()" autocomplete="off"/>
+        <div id="suggestions" class="suggestions"></div>
+      </div>
+
+      <label for="criticality">Criticality (1 = Low, 5 = High)</label>
+      <input id="criticality" type="number" min="1" max="5" value="3" />
+
+      <div class="controls-row">
+        <button onclick="assignPatient()" class="btn primary">Assign</button>
+        <button onclick="dispatchPatients()" class="btn ghost">Dispatch</button>
+      </div>
+
+      <div class="system-stats">
+        <div><strong>Total:</strong> <span id="total">4</span></div>
+        <div><strong>Available:</strong> <span id="available">4</span></div>
+        <div><strong>Busy:</strong> <span id="busy">0</span></div>
+      </div>
+    </section>
+
+    <section class="lists-card">
+      <h2>Dispatcher Dashboard</h2>
+
+      <div class="lists-grid">
+        <div>
+          <h3>Priority Queue</h3>
+          <ul id="priorityQueueList" class="list"></ul>
+        </div>
+
+        <div>
+          <h3>Available Ambulances</h3>
+          <ul id="availableList" class="list"></ul>
+        </div>
+
+        <div>
+          <h3>Busy Ambulances</h3>
+          <ul id="busyList" class="list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="map-wrap">
+    <canvas id="mapCanvas" width="1100" height="640"></canvas>
+  </section>
+
+  <footer class="site-footer">
+    <small>Demo system — uses a simplified road graph for routing and ETA simulation.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
